@@ -48,7 +48,7 @@ def evaluation(m_name):
 
         try:
             list = model.similar_by_vector(word_array[0])
-            print(list)
+            #print(list)
             for guess in list:
                 for i in range(2,len(word_array)):
                     if guess[0].lower() == word_array[i].lower():
@@ -67,7 +67,6 @@ def evaluation(m_name):
         except KeyError:
             output_line += "NOT FOUND"
             output_line += ","
-            NOT_FOUND_FLAG = True
 
         if guess_word == '':
             output_line += 'guess'
@@ -79,29 +78,24 @@ def evaluation(m_name):
             output_line += 'wrong'
             w_count += 1
 
-
         f.write(output_line+'\n')
-
-        #print(output_line)
-        #print("")
         output_line = ""
-        NOT_FOUND_FLAG = False
 
-
-    an_line = m_name +","+str(800)+","+str(c_count)+","+str(80-g_count)+","+str(c_count/80)
+    # After all 80 terms have been analyzed, write to file
+    an_line = m_name +","+str(len(model))+","+str(c_count)+","+str(80-g_count)+","+str(c_count/80)
     analysis_file = path + "analysis.csv"
-    f2 = open(analysis_file,"w")
+    f2 = open(analysis_file, "a")
     f2.write(an_line)
-    print("Correct:")
-    print(c_count / 80)
-    print("Wrong:")
-    print(w_count / 80)
 
 
 getTerms()
-#evaluation("word2vec-google-news-300")
-#evaluation("glove-twitter-25")
+evaluation("word2vec-google-news-300")
+# C1 != C2 E1 = E2
+evaluation("glove-twitter-200")
+evaluation("glove-wiki-gigaword-200")
+# C3 = C4 E3 != E4
+evaluation("glove-wiki-gigaword-100")
 evaluation("glove-wiki-gigaword-300")
-#Task 2
+
 
 

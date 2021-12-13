@@ -1,0 +1,8 @@
+Looking at analysis.csv, we see a correlation between embeding/vector size and overall performance.
+With word2vec-google-news-300 and glove-wiki-gigaword-300 being the highest performing with
+around a 40% correct rate. glove-wiki-gigaword 100 and 200 perform noticably worst. The twitter
+corpus does not seem to be too good for prediting synonyms. It might be related to twitter having
+more slang and other such things. But it could be useful in other cases.
+Comparing them to the Human-Gold standard, we can see we do not even come close with our best only
+being about half successful as the Gold-Standard. Perhaps if we were to train our own model we could
+reach 80% correct rate or surpass it. 
